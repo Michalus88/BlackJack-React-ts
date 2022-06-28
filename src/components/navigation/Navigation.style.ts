@@ -2,7 +2,14 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import BlackJackLogo from "../../assets/BlackJackLogo.png";
 
-export const Wrapper = styled.nav`
+export const NavWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.transparentBlack};
+`;
+
+export const Nav = styled.nav`
   width: 100%;
   height: 100px;
   display: flex;
@@ -11,29 +18,31 @@ export const Wrapper = styled.nav`
 `;
 
 export const Logo = styled.div`
+  position: absolute;
+  top: -20px;
+  width: 120px;
+  height: 120px;
   background-image: url(${BlackJackLogo});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 120px;
-  height: 120px;
-  position: absolute;
-  top: -20px;
+  background-color: black;
 `;
 
 export const StyledLink = styled(NavLink)`
-  padding: 15px 25px;
+  border: ${({ theme }) => theme.colors.green} solid 1px;
+  padding: 10px 25px;
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.black};
   text-align: center;
   &:hover {
-    border-bottom: yellow solid 2px;
-    border-left: yellow solid 2px;
+    box-shadow: 1px -1px 15px 2px ${({ theme }) => theme.colors.lightgreen};
   }
   &.active {
-    border-bottom: yellow solid 2px;
-    border-left: yellow solid 2px;
+    background-color: ${({ theme }) => theme.colors.lightgreen};
+    box-shadow: 1px -1px 15px 1px ${({ theme }) => theme.colors.lightgreen};
   }
 `;
