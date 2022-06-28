@@ -1,117 +1,112 @@
-import React, { useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { RegisterReq } from "types";
+import { Wrapper } from "./register.styled";
+import {
+  Form,
+  ValidationMsg,
+  WrapperField,
+  Label,
+  Input,
+  Submit,
+} from "../../components/form/form";
+import { useError } from "../../hooks/useError";
+import { useCheckRes } from "../../hooks/useCheckRes";
 
-export function Register() {
-  const [globalErr, setGlobalErr] = useState<string | null>(null);
+export const Register = () => {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
     setError,
   } = useForm<RegisterReq>({
-    mode: "all",
+    mode: "onChange",
   });
-  const navigate = useNavigate();
+  const { error, dispatchError } = useError();
+  const isResError = useCheckRes();
+  const disabled = error ? true : false;
 
   const registerHendler: SubmitHandler<RegisterReq> = async (data) => {
-    const rawResponse = await fetch("http://localhost:3001/api/user", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    const res = await rawResponse.json();
-    console.log(rawResponse);
-
-    if (!(rawResponse.status === 200 || rawResponse.status === 201)) {
-      setGlobalErr(null);
-
-      switch (rawResponse.status) {
-        case 500:
-          return setGlobalErr("Sorry try again later");
-        case 400:
-          return setGlobalErr(
-            "Name: (required, 5-50 chars), Password: (required,5-50 chars), Email: (required, example@test.com)"
-          );
-        case 409:
-          return setError("email", {
-            type: "emil's availability",
-            message: res.message,
-          });
-        default:
-          return setGlobalErr("Sorry try again later");
-      }
+    try {
+      const res = await fetch("http://localhost:3001/api/user", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      console.log(res);
+      if (isResError(res, setError)) return;
+      navigate("/login");
+    } catch (error) {
+      dispatchError();
     }
-    navigate("/login");
   };
 
   return (
-    <form onSubmit={handleSubmit(registerHendler)}>
-      <label htmlFor="name">Name</label>
-      <input
-        placeholder="Bill"
-        type="text"
-        {...register("name", {
-          required: "this is a required",
-          maxLength: {
-            value: 50,
-            message: "Max length is 50",
-          },
-          minLength: {
-            value: 1,
-            message: "Min length is 5",
-          },
-        })}
-      />
-      <br />
-      {errors.name && errors.name.message}
-      <br />
-
-      <label htmlFor="pwd">Password</label>
-      <input
-        placeholder="Luo"
-        type="text"
-        {...register("pwd", {
-          required: "this is required",
-          maxLength: {
-            value: 50,
-            message: "Max length is 50",
-          },
-          minLength: {
-            value: 5,
-            message: "Min length is 5",
-          },
-        })}
-      />
-      <br />
-      {errors.pwd && errors.pwd.message}
-      <br />
-
-      <label htmlFor="email">Email</label>
-      <input
-        placeholder="bluebill1049@hotmail.com"
-        type="text"
-        {...register("email", {
-          required: "this is required",
-          pattern: {
-            value:
-              /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-            message: "Invalid email address",
-          },
-        })}
-      />
-      <br />
-      {errors.email && errors.email.message}
-      <br />
-      <br />
-      {globalErr ?? null}
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <Wrapper>
+      <Form onSubmit={handleSubmit(registerHendler)}>
+        <WrapperField>
+          <Label htmlFor="name">name</Label>
+          <Input
+            placeholder="Your Name"
+            type="text"
+            {...register("name", {
+              required: "this is a required",
+              maxLength: {
+                value: 50,
+                message: "Max length is 50",
+              },
+              minLength: {
+                value: 1,
+                message: "Min length is 5",
+              },
+            })}
+          />
+          <ValidationMsg>{errors.name && errors.name.message}</ValidationMsg>
+        </WrapperField>
+        <WrapperField>
+          <Label htmlFor="pwd">password</Label>
+          <Input
+            placeholder="password"
+            type="text"
+            {...register("pwd", {
+              required: "this is required",
+              maxLength: {
+                value: 50,
+                message: "Max length is 50",
+              },
+              minLength: {
+                value: 5,
+                message: "Min length is 5",
+              },
+            })}
+          />
+          <ValidationMsg>{errors.pwd && errors.pwd.message}</ValidationMsg>
+        </WrapperField>
+        <WrapperField>
+          <Label htmlFor="email">email</Label>
+          <Input
+            placeholder="example@domain.com"
+            type="text"
+            {...register("email", {
+              required: "this is required",
+              pattern: {
+                value:
+                  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                message: "Invalid email address",
+              },
+            })}
+          />
+          <ValidationMsg>{errors.email && errors.email.message}</ValidationMsg>
+        </WrapperField>
+        <Submit type="submit" disabled={disabled}>
+          Submit
+        </Submit>
+      </Form>
+    </Wrapper>
   );
-}
+};
