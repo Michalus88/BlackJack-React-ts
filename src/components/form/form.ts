@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { Button } from "../button/button";
 
+export const FormWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: ${({ theme }) => theme.colors.black};
+`;
+
 export const Form = styled.form`
   margin-top: 100px;
   margin-left: auto;

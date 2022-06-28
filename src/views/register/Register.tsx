@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { RegisterReq } from "types";
-import { Wrapper } from "./register.styled";
 import {
+  FormWrapper,
   Form,
   ValidationMsg,
   WrapperField,
@@ -47,7 +47,7 @@ export const Register = () => {
   };
 
   return (
-    <Wrapper>
+    <FormWrapper>
       <Form onSubmit={handleSubmit(registerHendler)}>
         <WrapperField>
           <Label htmlFor="name">name</Label>
@@ -107,6 +107,6 @@ export const Register = () => {
           Submit
         </Submit>
       </Form>
-    </Wrapper>
+    </FormWrapper>
   );
 };
