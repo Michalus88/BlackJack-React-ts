@@ -6,14 +6,16 @@ import { Home } from "./views/home/Home";
 import { ErrorMessage } from "./components/error-message/ErrorMessage";
 import { useError } from "./hooks/useError";
 import { MainTemplate } from "./components/templates/main-template";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
   const { error } = useError();
-  console.log(error);
+  const { user, signOut } = useAuth();
+
   return (
     <MainTemplate>
       {error ? <ErrorMessage message={error} /> : null}
-      <Navigation></Navigation>
+      <Navigation logOut={signOut} user={user}></Navigation>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

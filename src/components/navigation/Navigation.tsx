@@ -1,14 +1,31 @@
 import { StyledLink, Nav, NavWrapper } from "./navigation.style";
 import { Logo } from "../../views/home/Home";
+import { LoggedUserRes } from "types";
+import { FC } from "react";
 
-export const Navigation = () => {
+interface Props {
+  user: LoggedUserRes | null;
+  logOut: () => void;
+}
+
+export const Navigation: FC<Props> = ({ user, logOut }) => {
   return (
     <NavWrapper>
       <Logo></Logo>
       <Nav>
         <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/register">Register</StyledLink>
-        <StyledLink to="/login">Login</StyledLink>
+        {user ? (
+          <StyledLink to="/game">Game</StyledLink>
+        ) : (
+          <StyledLink to="/register">Register</StyledLink>
+        )}
+        {user ? (
+          <StyledLink to="/login" onClick={logOut}>
+            Logout
+          </StyledLink>
+        ) : (
+          <StyledLink to="/login">Login</StyledLink>
+        )}
       </Nav>
     </NavWrapper>
   );
