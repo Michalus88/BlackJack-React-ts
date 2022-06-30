@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  cursor: pointer;
-  margin: 15px 0;
-  padding: 12px 20px;
+  border: ${({ theme }) => theme.colors.green} solid 1px;
+  padding: 6px 25px;
+  background-color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.green};
   font-size: ${({ theme: { fontSize } }) => fontSize.l};
-  border: none;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.darkGrey};
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 1px -1px 15px 2px ${({ theme }) => theme.colors.lightgreen};
+  }
 `;

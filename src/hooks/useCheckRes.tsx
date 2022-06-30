@@ -12,6 +12,9 @@ export const useCheckRes = () => {
         case 400:
           dispatchError("Check the input data");
           return true;
+        case 401:
+          dispatchError("wrong email or password");
+          return true;
         case 409:
           setErr
             ? setErr("email", {
