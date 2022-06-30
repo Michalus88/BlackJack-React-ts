@@ -26,12 +26,12 @@ export const Game = () => {
         dispatchError();
       }
     })();
-  });
+  }, []);
   return (
     <GameProvider>
       <Wrapper>
         <Table />
-        <Dashboard player={player} />
+        <Dashboard player={player} setPlayer={setPlayer} />
       </Wrapper>
     </GameProvider>
   );
