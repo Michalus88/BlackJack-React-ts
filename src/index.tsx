@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { AppProviders } from "./providers/app-providers/AppProviders";
+import { AppProviders } from "./providers/AppProviders";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
