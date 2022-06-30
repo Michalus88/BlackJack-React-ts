@@ -4,13 +4,37 @@ import { PlayerDataRes } from "types";
 import { Button } from "../../../components/button/button";
 import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";
 import { GameContext } from "../../../providers/GameProvider";
+import { useCheckRes, useError } from "../../../hooks";
 
 interface Props {
   player: PlayerDataRes | null;
+  setPlayer: (player: PlayerDataRes) => void;
 }
 
-export const Dashboard: FC<Props> = ({ player }) => {
+export const Dashboard: FC<Props> = ({ player, setPlayer }) => {
   const { setBet, bet } = useContext(GameContext);
+  const isResError = useCheckRes();
+  const { dispatchError } = useError();
+
+  const betHandler = async () => {
+    try {
+      const res = await fetch("http://localhost:3001/api/game/bet", {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bet }),
+      });
+      const playerRes = (await res.json()) as PlayerDataRes;
+      setPlayer(playerRes);
+      console.log(res);
+      if (isResError(res)) return;
+    } catch (error) {
+      dispatchError();
+    }
+  };
 
   return (
     <Wrapper>
@@ -22,7 +46,7 @@ export const Dashboard: FC<Props> = ({ player }) => {
       )}
       {!player?.isBet && (
         <BtnsGroup>
-          <BetButton>
+          <BetButton onClick={betHandler}>
             Bet{bet === 0 ? null : <BetDisplay>{bet}</BetDisplay>}
           </BetButton>
           <RangeSlider
