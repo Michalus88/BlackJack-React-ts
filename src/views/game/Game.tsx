@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Dashboard } from "./dashboard/Dashboard";
-import { Wrapper } from "./game.styled";
 import { Table } from "./table/Table";
 import { PlayerDataRes } from "types";
 import { useError } from "../../../src/hooks";
-import { GameProvider } from "../../providers/GameProvider";
+import { GameContext } from "../../providers/GameProvider";
+import { Wrapper } from "./game.styled";
 
 export const Game = () => {
-  const [player, setPlayer] = useState<PlayerDataRes | null>(null);
+  const { setPlayer } = useContext(GameContext);
   const { dispatchError } = useError();
   useEffect(() => {
     (async () => {
