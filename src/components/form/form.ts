@@ -19,7 +19,7 @@ export const Form = styled.form`
   align-items: center;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.black};
-  box-shadow: 0px 1px 20px 0px green;
+  box-shadow: 0px 1px 20px 0px ${({ theme }) => theme.colors.green};
 `;
 export const WrapperField = styled.div`
   position: relative;
