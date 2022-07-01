@@ -6,13 +6,8 @@ import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";
 import { GameContext } from "../../../providers/GameProvider";
 import { useCheckRes, useError } from "../../../hooks";
 
-interface Props {
-  player: PlayerDataRes | null;
-  setPlayer: (player: PlayerDataRes) => void;
-}
-
-export const Dashboard: FC<Props> = ({ player, setPlayer }) => {
-  const { setBet, bet } = useContext(GameContext);
+export const Dashboard: FC = () => {
+  const { setBet, bet, setPlayer, player } = useContext(GameContext);
   const isResError = useCheckRes();
   const { dispatchError } = useError();
 
