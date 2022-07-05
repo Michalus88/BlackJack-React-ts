@@ -63,6 +63,8 @@ export const ValidationMsg = styled.label`
 
 export const Submit = styled(Button)`
   width: 240px;
+  padding: 10px;
   background-color: ${({ theme }) => theme.colors.green};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme, disabled }) =>
+    disabled ? theme.colors.gray : theme.colors.white};
 `;
