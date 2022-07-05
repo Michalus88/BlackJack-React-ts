@@ -11,7 +11,7 @@ export const RangeSlider: FC<Props> = ({ value = 0, setValue, maxRange }) => {
   return (
     <Wrapper>
       <Field>
-        <MinVal>0$</MinVal>
+        <MinVal>0 $</MinVal>
         <Slider
           onChange={(e) => setValue(Number(e.target.value))}
           min="0"
@@ -19,7 +19,7 @@ export const RangeSlider: FC<Props> = ({ value = 0, setValue, maxRange }) => {
           value={value}
           step="1"
         />
-        <MaxVal>{maxRange}$</MaxVal>
+        <MaxVal>{maxRange} $</MaxVal>
       </Field>
     </Wrapper>
   );

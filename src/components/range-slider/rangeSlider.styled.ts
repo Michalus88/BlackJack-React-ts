@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   width: 380px;
   background: black;
   border: 1px solid green;
-  padding: 0 65px 0 45px;
+  padding: 0 70px 0 45px;
 `;
 
 export const Field = styled.div`
@@ -23,14 +23,14 @@ const RangeVal = styled.div`
 `;
 
 export const MinVal = styled(RangeVal)`
-  left: -22px;
+  left: -25px;
 `;
 
 export const MaxVal = styled(RangeVal)`
-  right: -43px;
+  right: -50px;
 `;
 
-export const Slider = styled.input.attrs((props) => ({
+export const Slider = styled.input.attrs(() => ({
   type: "range",
 }))`
   -webkit-appearance: none;
@@ -41,6 +41,10 @@ export const Slider = styled.input.attrs((props) => ({
   outline: none;
   border: none;
   z-index: 100;
+  cursor: pointer;
+  :hover {
+    box-shadow: 0px 0px 10px 0px ${({ theme }) => theme.colors.lightgreen};
+  }
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
