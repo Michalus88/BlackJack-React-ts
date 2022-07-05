@@ -4,14 +4,17 @@ const baseUrl = "cards/";
 
 export const CardsConteiner = styled(PlayerContainer)`
   position: relative;
+  display: flex;
   border-bottom: none;
   min-height: 200px;
-  justify-content: center;
+  /* justify-content: flex-start; */
   align-items: center;
 `;
 
-export const CardStyled = styled.div<{ imgName: string }>`
-  position: relative;
+export const CardStyled = styled.div<{ imgName: string; translateX: number }>`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   width: 103px;
   height: 150px;
   background: black;
@@ -19,7 +22,7 @@ export const CardStyled = styled.div<{ imgName: string }>`
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  &:nth-child(2) {
-    transform: translateX(-50%);
+  &:not(:first-child) {
+    transform: ${(props) => `translateX(${props.translateX}%)`};
   }
 `;

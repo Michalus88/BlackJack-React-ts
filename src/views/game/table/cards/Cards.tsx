@@ -12,10 +12,21 @@ export interface CardType {
   weight: string;
 }
 
-export const Cards: FC<Props> = ({ cards }) => (
-  <CardsConteiner>
-    {cards?.map((card) => (
-      <CardStyled key={card._id} imgName={cardNameBuilder(card)} />
-    ))}
-  </CardsConteiner>
-);
+export const Cards: FC<Props> = ({ cards }) => {
+  let translateX = -100;
+  return (
+    <CardsConteiner>
+      {cards?.map((card) => {
+        translateX += 50;
+        console.log(translateX);
+        return (
+          <CardStyled
+            translateX={translateX}
+            key={card._id}
+            imgName={cardNameBuilder(card)}
+          />
+        );
+      })}
+    </CardsConteiner>
+  );
+};
