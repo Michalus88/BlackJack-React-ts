@@ -7,7 +7,7 @@ import React, {
 } from "react";
 interface ErrorContextType {
   error: string | null;
-  dispatchError: (message?: string) => void;
+  dispatchError: (message?: string | null) => void;
 }
 const ErrorContext = createContext<ErrorContextType>(null!);
 
@@ -15,7 +15,7 @@ export const ErrorProvider = ({ children }: { children: JSX.Element }) => {
   const [error, setError] = useState<string | null>(null);
   const timerId = useRef<NodeJS.Timeout>(null!);
 
-  const dispatchError = useCallback((message?: string) => {
+  const dispatchError = useCallback((message?: string | null) => {
     clearTimeout(timerId.current);
     setError((prev) => (prev = message ?? "Sorry. Please try later"));
     timerId.current = setTimeout(() => {

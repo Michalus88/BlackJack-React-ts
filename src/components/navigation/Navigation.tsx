@@ -8,25 +8,23 @@ interface Props {
   logOut: () => void;
 }
 
-export const Navigation: FC<Props> = ({ user, logOut }) => {
-  return (
-    <NavWrapper>
-      <Logo></Logo>
-      <Nav>
-        <StyledLink to="/">Home</StyledLink>
-        {user ? (
-          <StyledLink to="/game">Game</StyledLink>
-        ) : (
-          <StyledLink to="/register">Register</StyledLink>
-        )}
-        {user ? (
-          <StyledLink to="/login" onClick={logOut}>
-            Logout
-          </StyledLink>
-        ) : (
-          <StyledLink to="/login">Login</StyledLink>
-        )}
-      </Nav>
-    </NavWrapper>
-  );
-};
+export const Navigation: FC<Props> = ({ user, logOut }) => (
+  <NavWrapper>
+    <Logo></Logo>
+    <Nav>
+      <StyledLink to="/">Home</StyledLink>
+      {user ? (
+        <StyledLink to="/game">Game</StyledLink>
+      ) : (
+        <StyledLink to="/register">Register</StyledLink>
+      )}
+      {user ? (
+        <StyledLink to="/login" onClick={logOut}>
+          Logout
+        </StyledLink>
+      ) : (
+        <StyledLink to="/login">Login</StyledLink>
+      )}
+    </Nav>
+  </NavWrapper>
+);
