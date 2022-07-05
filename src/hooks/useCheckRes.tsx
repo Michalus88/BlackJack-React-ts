@@ -1,31 +1,32 @@
-import { UseFormSetError } from "react-hook-form";
 import { useError } from "./useError";
+import { ErrorRes } from "types";
+
+type IsResError = (res: Response, errorMesage?: string) => Promise<boolean>;
 
 export const useCheckRes = () => {
   const { dispatchError } = useError();
 
-  const isResError = (res: Response, setErr?: UseFormSetError<any>) => {
+  const isResError: IsResError = async (res, errorMessage) => {
     let isErr = false;
     if (!res.ok) {
       isErr = true;
+      const errorRes: ErrorRes | null = await res.json();
+      const apiMessage = errorRes?.message ?? null;
+      const message = errorMessage ? errorMessage : apiMessage ?? null;
+
       switch (res.status) {
         case 400:
-          dispatchError("Check the input data");
-          return true;
+          dispatchError(apiMessage);
+          break;
         case 401:
-          dispatchError("wrong email or password");
-          return true;
-        case 409:
-          setErr
-            ? setErr("email", {
-                type: "emil's availability",
-                message: "email is alredy registered",
-              })
-            : dispatchError("email is alredy registered");
-          return true;
+          dispatchError(message);
+          break;
+        case 403:
+          dispatchError(apiMessage);
+          break;
         default:
           dispatchError();
-          return true;
+          break;
       }
     }
 
