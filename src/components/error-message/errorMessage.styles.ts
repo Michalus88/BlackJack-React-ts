@@ -12,7 +12,7 @@ const shrinkAnimation = keyframes`
 
 const slideAnimation = keyframes`
   from {
-    transform: translateX(-50%) translateY(500%);
+    transform: translateX(-50%) translateY(-500%);
   }
   to {
     transform: translateX(-50%) translateY(0);
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10vh;
+  top: 130px;
   background-color: black;
   padding: 25px 25px 15px;
   color: ${({ theme }) => theme.colors.error};
