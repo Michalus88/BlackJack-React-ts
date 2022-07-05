@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const MainTemplate = styled.div`
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   max-width: 1300px;
