@@ -1,17 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { RegisterReq } from "types";
 import {
   FormWrapper,
   Form,
-  ValidationMsg,
-  WrapperField,
-  Label,
   Input,
+  Label,
   Submit,
+  WrapperField,
+  ValidationMsg,
 } from "../../components/form/form";
-import { useError, useCheckRes, useAuth } from "../../hooks";
+import { useAuth, useError } from "../../hooks";
 
 export const Login = () => {
   const {
@@ -24,7 +23,6 @@ export const Login = () => {
   const { signIn } = useAuth();
   const { error } = useError();
   const disabled = error ? true : false;
-
   const registerHendler: SubmitHandler<RegisterReq> = async (data) => {
     await signIn(data);
   };

@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { RegisterReq } from "types";
+import { useError } from "../../hooks/useError";
+import { isResErrorMsg } from "../../helpers/isErrorMsg";
 import {
   FormWrapper,
   Form,
@@ -11,8 +13,6 @@ import {
   Input,
   Submit,
 } from "../../components/form/form";
-import { useError } from "../../hooks/useError";
-import { useCheckRes } from "../../hooks/useCheckRes";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -25,7 +25,6 @@ export const Register = () => {
     mode: "onChange",
   });
   const { error, dispatchError } = useError();
-  const isResError = useCheckRes();
   const disabled = error ? true : false;
 
   const registerHendler: SubmitHandler<RegisterReq> = async (data) => {
@@ -38,9 +37,16 @@ export const Register = () => {
         },
         body: JSON.stringify(data),
       });
-      console.log(res);
-      if (isResError(res, setError)) return;
-      navigate("/login");
+
+      if (res.status === 409) {
+        return setError("email", { message: "email is alredy in use" });
+      }
+      const errMsg = await isResErrorMsg(res);
+      if (errMsg) {
+        dispatchError(errMsg);
+      } else {
+        navigate("/login");
+      }
     } catch (error) {
       dispatchError();
     }

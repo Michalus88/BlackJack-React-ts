@@ -18,7 +18,7 @@ export const Cards: FC<Props> = ({ cards }) => {
     <CardsConteiner>
       {cards?.map((card) => {
         translateX += 50;
-        console.log(translateX);
+
         return (
           <CardStyled
             translateX={translateX}
