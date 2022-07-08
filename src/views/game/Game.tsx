@@ -1,14 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useGameFetch } from "../../hooks/";
 import { Dashboard } from "./dashboard/Dashboard";
 import { Table } from "./table/Table";
-import { PlayerDataRes } from "types";
-import { useError } from "../../../src/hooks";
-import { GameContext } from "../../providers/GameProvider";
 import { Wrapper } from "./game.styled";
 
 export const Game = () => {
-  const { setPlayer } = useContext(GameContext);
-  const { dispatchError } = useError();
+  const { callApi, player } = useGameFetch();
+
+  useEffect(() => {
+    callApi();
+  }, []);
+
   useEffect(() => {
     (async () => {
       try {
