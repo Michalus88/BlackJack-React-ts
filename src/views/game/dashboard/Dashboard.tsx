@@ -12,23 +12,16 @@ export const Dashboard: FC = () => {
   const isDisabled = player?.gameResult ? true : false;
 
   const betHandler = async () => {
-    try {
-      const res = await fetch("http://localhost:3001/api/game/bet", {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ bet }),
-      });
-      const playerRes = (await res.json()) as PlayerDataRes;
-      setPlayer(playerRes);
-      console.log(res);
-      if (isResError(res)) return;
-    } catch (error) {
-      dispatchError();
-    }
+    await callApi("/bet", { method: HttpMethods.PUT, payload: { bet } });
+    setBet(0);
+  };
+
+  const standHandler = async () => {
+    await callApi("/stand");
+  };
+
+  const pickHandler = async () => {
+    await callApi("/pick-card");
   };
 
   return (
