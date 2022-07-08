@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Button = styled.button<{ disabled?: boolean }>`
+  box-sizing: border-box;
   border: ${({ disabled, theme }) =>
     disabled
-      ? `solid 1px ${theme.colors.grey}`
+      ? `solid 1px ${theme.colors.gray}`
       : `solid 1px ${theme.colors.green}`};
   padding: 6px 25px;
   background-color: ${({ theme }) => theme.colors.black};
