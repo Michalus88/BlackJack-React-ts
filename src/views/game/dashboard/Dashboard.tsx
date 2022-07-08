@@ -6,9 +6,10 @@ import { Button } from "../../../components/button/button";
 import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";
 
 export const Dashboard: FC = () => {
-  const { setBet, bet, setPlayer, player } = useContext(GameContext);
-  const isResError = useCheckRes();
-  const { dispatchError } = useError();
+  const { setBet, bet } = useContext(GameContext);
+  const { callApi, player } = useGameFetch();
+
+  const isDisabled = player?.gameResult ? true : false;
 
   const betHandler = async () => {
     try {
@@ -34,14 +35,18 @@ export const Dashboard: FC = () => {
     <Wrapper>
       {player?.isBet && (
         <BtnsGroup>
-          <Button>Stand</Button>
-          <Button>Pick</Button>
+          <Button disabled={isDisabled} onClick={standHandler}>
+            Stand
+          </Button>
+          <Button disabled={isDisabled} onClick={pickHandler}>
+            Pick
+          </Button>
         </BtnsGroup>
       )}
       {!player?.isBet && (
         <BtnsGroup>
-          <BetButton onClick={betHandler}>
-            Bet{bet === 0 ? null : <BetDisplay>{bet}</BetDisplay>}
+          <BetButton disabled={bet ? false : true} onClick={betHandler}>
+            Bet{bet === 0 ? null : <BetDisplay>{bet} $</BetDisplay>}
           </BetButton>
           <RangeSlider
             value={bet}
