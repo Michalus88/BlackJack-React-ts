@@ -1,10 +1,9 @@
 import React, { FC, useContext } from "react";
+import { GameContext } from "../../../providers/GameProvider";
+import { HttpMethods, useGameFetch } from "../../../hooks";
 import { RangeSlider } from "../../../components/range-slider/RangeSlider";
-import { PlayerDataRes } from "types";
 import { Button } from "../../../components/button/button";
 import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";
-import { GameContext } from "../../../providers/GameProvider";
-import { useCheckRes, useError } from "../../../hooks";
 
 export const Dashboard: FC = () => {
   const { setBet, bet, setPlayer, player } = useContext(GameContext);
