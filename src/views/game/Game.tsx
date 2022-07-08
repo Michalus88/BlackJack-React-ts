@@ -12,23 +12,19 @@ export const Game = () => {
   }, []);
 
   useEffect(() => {
+    let timeOutId: NodeJS.Timeout;
     (async () => {
-      try {
-        const res = await fetch("http://localhost:3001/api/game", {
-          credentials: "include",
-        });
-        if (res.ok) {
-          const playerRes = (await res.json()) as PlayerDataRes;
-          setPlayer(playerRes);
-        } else {
-          setPlayer(null);
-        }
-      } catch (e) {
-        console.log(e);
-        dispatchError();
+      if (player?.gameResult) {
+        timeOutId = setTimeout(async () => {
+          await callApi();
+        }, 2000);
       }
     })();
-  }, []);
+    return () => {
+      clearTimeout(timeOutId);
+    };
+  }, [player]);
+
   return (
     <GameProvider>
       <Wrapper>
