@@ -26,11 +26,9 @@ export const Game = () => {
   }, [player]);
 
   return (
-    <GameProvider>
-      <Wrapper>
-        <Table />
-        <Dashboard player={player} setPlayer={setPlayer} />
-      </Wrapper>
-    </GameProvider>
+    <Wrapper>
+      <Table />
+      <Dashboard />
+    </Wrapper>
   );
 };
