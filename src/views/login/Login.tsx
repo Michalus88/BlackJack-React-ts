@@ -2,7 +2,6 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RegisterReq } from "types";
 import {
-  FormWrapper,
   Form,
   Input,
   Label,
@@ -11,7 +10,7 @@ import {
   ValidationMsg,
 } from "../../components/form/form";
 import { useAuth, useError } from "../../hooks";
-
+import { MainContentWrapper } from "../../components/main-content/mainContentWrapper";
 export const Login = () => {
   const {
     register,
@@ -28,7 +27,7 @@ export const Login = () => {
   };
 
   return (
-    <FormWrapper>
+    <MainContentWrapper>
       <Form onSubmit={handleSubmit(registerHendler)}>
         <WrapperField>
           <Label htmlFor="email">email</Label>
@@ -69,6 +68,6 @@ export const Login = () => {
           Submit
         </Submit>
       </Form>
-    </FormWrapper>
+    </MainContentWrapper>
   );
 };

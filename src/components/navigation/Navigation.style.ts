@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import BlackJackLogo from "../../assets/BlackJackLogo.png";
+import { img } from "../../assets";
 
 export const NavWrapper = styled.div`
   display: flex;
@@ -18,15 +18,12 @@ export const Nav = styled.nav`
 `;
 
 export const Logo = styled.div`
-  position: absolute;
-  top: -20px;
-  width: 120px;
-  height: 120px;
-  background-image: url(${BlackJackLogo});
+  background-image: url(${img.logo});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  background-color: black;
+  width: 160px;
+  height: 100px;
 `;
 
 export const StyledLink = styled(NavLink)`

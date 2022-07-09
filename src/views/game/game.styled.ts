@@ -1,14 +1,8 @@
 import styled from "styled-components";
+import { MainContentWrapper } from "../../components/main-content/mainContentWrapper";
 
-export const Wrapper = styled.div`
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 10px;
-  width: 100%;
-  height: 100%;
-  display: flex;
+export const Wrapper = styled(MainContentWrapper)`
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: black;
+  padding: 10px;
 `;

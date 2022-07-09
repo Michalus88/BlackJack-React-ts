@@ -4,8 +4,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { RegisterReq } from "types";
 import { useError } from "../../hooks/useError";
 import { isResErrorMsg } from "../../helpers/isErrorMsg";
+import { MainContentWrapper } from "../../components/main-content/mainContentWrapper";
 import {
-  FormWrapper,
   Form,
   ValidationMsg,
   WrapperField,
@@ -53,7 +53,7 @@ export const Register = () => {
   };
 
   return (
-    <FormWrapper>
+    <MainContentWrapper>
       <Form onSubmit={handleSubmit(registerHendler)}>
         <WrapperField>
           <Label htmlFor="name">name</Label>
@@ -113,6 +113,6 @@ export const Register = () => {
           Submit
         </Submit>
       </Form>
-    </FormWrapper>
+    </MainContentWrapper>
   );
 };
