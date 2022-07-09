@@ -8,9 +8,11 @@ import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";
 export const Dashboard: FC = () => {
   const { setBet, bet } = useContext(GameContext);
   const { callApi, player } = useGameFetch();
+  if (player === null) {
+    return <div></div>;
+  }
 
   const isDisabled = player?.gameResult ? true : false;
-
   const betHandler = async () => {
     await callApi("/bet", { method: HttpMethods.PUT, payload: { bet } });
     setBet(0);
