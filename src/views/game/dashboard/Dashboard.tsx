@@ -26,28 +26,43 @@ export const Dashboard: FC = () => {
     await callApi("/pick-card");
   };
 
+  const takeCreditsHandler = async () => {
+    await callApi("/take-credits");
+  };
+
   return (
     <Wrapper>
-      {player?.isBet && (
-        <BtnsGroup>
-          <Button disabled={isDisabled} onClick={standHandler}>
-            Stand
-          </Button>
-          <Button disabled={isDisabled} onClick={pickHandler}>
-            Pick
-          </Button>
-        </BtnsGroup>
+      {(player?.means > 0 || player?.playerBet > 0) && (
+        <>
+          {player?.isBet && (
+            <BtnsGroup>
+              <Button disabled={isDisabled} onClick={standHandler}>
+                Stand
+              </Button>
+              <Button disabled={isDisabled} onClick={pickHandler}>
+                Pick
+              </Button>
+            </BtnsGroup>
+          )}
+          {!player?.isBet && (
+            <BtnsGroup>
+              <BetButton disabled={bet ? false : true} onClick={betHandler}>
+                Bet{bet === 0 ? null : <BetDisplay>{bet} $</BetDisplay>}
+              </BetButton>
+              <RangeSlider
+                value={bet}
+                setValue={setBet}
+                maxRange={player?.means ?? 0}
+              />
+            </BtnsGroup>
+          )}
+        </>
       )}
-      {!player?.isBet && (
+      {!player.means && !player.playerBet && (
         <BtnsGroup>
-          <BetButton disabled={bet ? false : true} onClick={betHandler}>
-            Bet{bet === 0 ? null : <BetDisplay>{bet} $</BetDisplay>}
-          </BetButton>
-          <RangeSlider
-            value={bet}
-            setValue={setBet}
-            maxRange={player?.means ?? 0}
-          />
+          <Button disabled={isDisabled} onClick={takeCreditsHandler}>
+            Take Credits
+          </Button>
         </BtnsGroup>
       )}
     </Wrapper>
