@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState, createContext } from "react";
 import { RegisterReq, LoggedUserRes } from "types";
-import { useError } from "./";
+import { useNotification } from "./";
 import { useNavigate } from "react-router";
 import { isResErrorMsg } from "../helpers/isErrorMsg";
+import { NotificationMode } from "../components/notification/Notification";
 
 interface AuthContextType {
   user: LoggedUserRes | null;
@@ -14,7 +15,7 @@ const AuthContext = createContext<AuthContextType>(null!);
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const navigate = useNavigate();
-  const { dispatchError, error } = useError();
+  const { dispatchNotification, message, mode } = useNotification();
   const [user, setUser] = useState<LoggedUserRes | null>(null);
   const [wasPrevMsgUnauthorized, setWasPrevMsgUnauthorized] =
     useState<boolean>(false);
@@ -32,20 +33,21 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
           setUser(null);
         }
       } catch (err) {
-        dispatchError("Server is anavailable.");
+        dispatchNotification("Server is anavailable.");
       }
     })();
   }, []);
 
   useEffect(() => {
+    if (mode !== NotificationMode.ERROR) return;
     if (wasPrevMsgUnauthorized) {
       setWasPrevMsgUnauthorized(false);
       signOut();
     }
-    if (error === "Unauthorized") {
+    if (message === "Unauthorized") {
       setWasPrevMsgUnauthorized(true);
     }
-  }, [error]);
+  }, [message]);
 
   const signIn = async (data: RegisterReq) => {
     try {
@@ -59,14 +61,14 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         body: JSON.stringify(data),
       });
       if (await isResErrorMsg(res)) {
-        dispatchError("wrong login or password");
+        dispatchNotification("wrong login or password");
       } else {
         const user = (await res.json()) as LoggedUserRes;
         setUser(user);
         navigate("/");
       }
     } catch (error) {
-      dispatchError();
+      dispatchNotification();
     }
   };
 
@@ -81,13 +83,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         setUser(null);
       } else {
         if (errMsg) {
-          dispatchError(errMsg);
+          dispatchNotification(errMsg);
         } else {
           setUser(null);
         }
       }
     } catch (error) {
-      dispatchError();
+      dispatchNotification();
     } finally {
       navigate("/login");
     }

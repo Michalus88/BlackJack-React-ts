@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { GameContext } from "../providers/GameProvider";
 import { PlayerDataRes } from "types";
-import { useError } from "./useError";
+import { useNotification } from "./useNotification";
 import { isResErrorMsg } from "../helpers/isErrorMsg";
 
 const BASE_URL = "http://localhost:3001/api/game";
@@ -29,7 +29,7 @@ interface CallApiOptions<T> {
 export const useGameFetch = (): UseGameFetchRes => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setPlayer, player } = useContext(GameContext);
-  const { dispatchError } = useError();
+  const { dispatchNotification } = useNotification();
 
   const callApi: CallApi = async (restUrl, options) => {
     setIsLoading(true);
@@ -64,7 +64,7 @@ export const useGameFetch = (): UseGameFetchRes => {
     } catch (e) {
       setIsLoading(false);
       setPlayer(null);
-      dispatchError();
+      dispatchNotification();
     }
   };
 

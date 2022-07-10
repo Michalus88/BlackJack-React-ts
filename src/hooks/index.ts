@@ -1,3 +1,3 @@
 export * from "./useAuth";
-export * from "./useError";
+export * from "./useNotification";
 export * from "./useGameFetch";

@@ -11,8 +11,8 @@ export const Dashboard: FC = () => {
   if (player === null) {
     return <div></div>;
   }
-
   const isDisabled = player?.gameResult ? true : false;
+
   const betHandler = async () => {
     await callApi("/bet", { method: HttpMethods.PUT, payload: { bet } });
     setBet(0);
