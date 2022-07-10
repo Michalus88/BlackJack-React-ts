@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Title } from "../title/title";
+import { NotificationMode } from "./Notification";
 
 const shrinkAnimation = keyframes`
   from {
@@ -19,7 +20,7 @@ const slideAnimation = keyframes`
   }
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ mode: NotificationMode }>`
   min-width: 500px;
   position: absolute;
   left: 50%;
@@ -27,9 +28,26 @@ export const Wrapper = styled.div`
   top: 130px;
   background-color: black;
   padding: 25px 25px 15px;
-  color: ${({ theme }) => theme.colors.error};
-  border: 1px solid ${({ theme }) => theme.colors.error};
-  box-shadow: 0px 1px 20px 0px ${({ theme }) => theme.colors.error};
+  color: ${({ theme, mode }) =>
+    mode === NotificationMode.SUCCESS
+      ? theme.colors.lightgreen
+      : mode === NotificationMode.WARMING
+      ? theme.colors.warming
+      : theme.colors.error};
+  border: 1px solid
+    ${({ theme, mode }) =>
+      mode === NotificationMode.SUCCESS
+        ? theme.colors.lightgreen
+        : mode === NotificationMode.WARMING
+        ? theme.colors.warming
+        : theme.colors.error};
+  box-shadow: 0px 1px 20px 0px
+    ${({ theme, mode }) =>
+      mode === NotificationMode.SUCCESS
+        ? theme.colors.lightgreen
+        : mode === NotificationMode.WARMING
+        ? theme.colors.warming
+        : theme.colors.error};
   z-index: 100;
   animation: ${slideAnimation} 1s ease-in-out 1 forwards,
     ${slideAnimation} 1s 6s ease-in-out 1 reverse forwards;
@@ -43,7 +61,12 @@ export const Wrapper = styled.div`
     right: 10px;
     top: 10px;
     background-color: inherit;
-    color: ${({ theme }) => theme.colors.error};
+    color: ${({ theme, mode }) =>
+      mode === NotificationMode.SUCCESS
+        ? theme.colors.lightgreen
+        : mode === NotificationMode.WARMING
+        ? theme.colors.warming
+        : theme.colors.error};
     cursor: pointer;
   }
 
@@ -54,7 +77,12 @@ export const Wrapper = styled.div`
     left: 50%;
     top: 15px;
     transform: translateX(-50%);
-    background-color: ${({ theme }) => theme.colors.error};
+    background-color: ${({ theme, mode }) =>
+      mode === NotificationMode.SUCCESS
+        ? theme.colors.lightgreen
+        : mode === NotificationMode.WARMING
+        ? theme.colors.warming
+        : theme.colors.error};
     width: 60px;
     height: 5px;
     border-radius: 50px;
