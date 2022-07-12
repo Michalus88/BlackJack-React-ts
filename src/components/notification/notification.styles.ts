@@ -29,28 +29,34 @@ export const Wrapper = styled.div<{ mode: NotificationMode }>`
   background-color: black;
   padding: 25px 25px 15px;
   color: ${({ theme, mode }) =>
-    mode === NotificationMode.SUCCESS
+    mode === NotificationMode.ERROR
+      ? theme.colors.error
+      : mode === NotificationMode.SUCCESS
       ? theme.colors.lightgreen
       : mode === NotificationMode.WARMING
       ? theme.colors.warming
-      : theme.colors.error};
+      : theme.colors.white};
   border: 1px solid
     ${({ theme, mode }) =>
-      mode === NotificationMode.SUCCESS
+      mode === NotificationMode.ERROR
+        ? theme.colors.error
+        : mode === NotificationMode.SUCCESS
         ? theme.colors.lightgreen
         : mode === NotificationMode.WARMING
         ? theme.colors.warming
-        : theme.colors.error};
+        : theme.colors.white};
   box-shadow: 0px 1px 20px 0px
     ${({ theme, mode }) =>
-      mode === NotificationMode.SUCCESS
+      mode === NotificationMode.ERROR
+        ? theme.colors.error
+        : mode === NotificationMode.SUCCESS
         ? theme.colors.lightgreen
         : mode === NotificationMode.WARMING
         ? theme.colors.warming
-        : theme.colors.error};
+        : theme.colors.white};
   z-index: 100;
   animation: ${slideAnimation} 1s ease-in-out 1 forwards,
-    ${slideAnimation} 1s 6s ease-in-out 1 reverse forwards;
+    ${slideAnimation} 1s 4s ease-in-out 1 reverse forwards;
 
   ${Title} {
     color: ${({ theme }) => theme.colors.error};
@@ -62,11 +68,13 @@ export const Wrapper = styled.div<{ mode: NotificationMode }>`
     top: 10px;
     background-color: inherit;
     color: ${({ theme, mode }) =>
-      mode === NotificationMode.SUCCESS
+      mode === NotificationMode.ERROR
+        ? theme.colors.error
+        : mode === NotificationMode.SUCCESS
         ? theme.colors.lightgreen
         : mode === NotificationMode.WARMING
         ? theme.colors.warming
-        : theme.colors.error};
+        : theme.colors.white};
     cursor: pointer;
   }
 
@@ -78,11 +86,13 @@ export const Wrapper = styled.div<{ mode: NotificationMode }>`
     top: 15px;
     transform: translateX(-50%);
     background-color: ${({ theme, mode }) =>
-      mode === NotificationMode.SUCCESS
+      mode === NotificationMode.ERROR
+        ? theme.colors.error
+        : mode === NotificationMode.SUCCESS
         ? theme.colors.lightgreen
         : mode === NotificationMode.WARMING
         ? theme.colors.warming
-        : theme.colors.error};
+        : theme.colors.white};
     width: 60px;
     height: 5px;
     border-radius: 50px;
@@ -95,6 +105,6 @@ export const Wrapper = styled.div<{ mode: NotificationMode }>`
   &::after {
     transform: translateX(-50%) scaleX(1);
     transform-origin: left top;
-    animation: ${shrinkAnimation} 5s 1s linear 1 forwards;
+    animation: ${shrinkAnimation} 3s 1s linear 1 forwards;
   }
 `;
