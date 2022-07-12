@@ -16,7 +16,7 @@ export const CardStyled = styled.div<{ imgName: string; translateX: number }>`
   transform: translateX(-50%);
   width: 103px;
   height: 150px;
-  background: black;
+  background: transparent;
   background-image: ${(props) => `url(${baseUrl}${props.imgName})`};
   background-position: center;
   background-size: contain;
