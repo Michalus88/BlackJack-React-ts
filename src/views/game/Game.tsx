@@ -15,6 +15,7 @@ export const Game = () => {
 
   useEffect(() => {
     callApi();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -43,6 +44,7 @@ export const Game = () => {
           break;
       }
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [player]);
 
   useEffect(() => {
@@ -66,6 +68,7 @@ export const Game = () => {
     return () => {
       clearTimeout(timeOutId);
     };
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);
 
   return (

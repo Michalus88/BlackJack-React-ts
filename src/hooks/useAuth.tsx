@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         dispatchNotification(NotificationMode.ERROR, "Server is anavailable.");
       }
     })();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -52,6 +53,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     if (message === "Unauthorized") {
       setWasPrevMsgUnauthorized(true);
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);
 
   const signIn = async (data: RegisterReq) => {
