@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Bitter', sans-serif;
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
+    overflow: hidden;
     background-color:black ;
     background-image: url(${img.symbols});
   background-position: center;
