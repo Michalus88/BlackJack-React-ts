@@ -41,6 +41,10 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   useEffect(() => {
     if (mode !== NotificationMode.ERROR) return;
+    if (message === GLOBAL_ERR_MSG) {
+      setUser(null);
+      navigate("/");
+    }
     if (wasPrevMsgUnauthorized) {
       setWasPrevMsgUnauthorized(false);
       signOut();
