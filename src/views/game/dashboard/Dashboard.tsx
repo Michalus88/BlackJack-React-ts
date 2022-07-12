@@ -32,31 +32,35 @@ export const Dashboard: FC = () => {
 
   return (
     <Wrapper>
-      {(player?.means > 0 || player?.playerBet > 0) && (
-        <>
-          {player?.isBet && (
-            <BtnsGroup>
-              <Button disabled={isDisabled} onClick={standHandler}>
-                Stand
-              </Button>
-              <Button disabled={isDisabled} onClick={pickHandler}>
-                Pick
-              </Button>
-            </BtnsGroup>
-          )}
-          {!player?.isBet && (
-            <BtnsGroup>
-              <BetButton disabled={bet ? false : true} onClick={betHandler}>
-                Bet{bet === 0 ? null : <BetDisplay>{bet} $</BetDisplay>}
-              </BetButton>
-              <RangeSlider
-                value={bet}
-                setValue={setBet}
-                maxRange={player?.means ?? 0}
-              />
-            </BtnsGroup>
-          )}
-        </>
+      {isLoading ? (
+        <LoadingIndicator size="small" />
+      ) : (
+        (player.means > 0 || player.playerBet > 0) && (
+          <>
+            {player?.isBet && (
+              <BtnsGroup>
+                <Button disabled={isDisabled} onClick={standHandler}>
+                  Stand
+                </Button>
+                <Button disabled={isDisabled} onClick={pickHandler}>
+                  Pick
+                </Button>
+              </BtnsGroup>
+            )}
+            {!player.isBet && (
+              <BtnsGroup>
+                <BetButton disabled={bet ? false : true} onClick={betHandler}>
+                  Bet{bet === 0 ? null : <BetDisplay>{bet} $</BetDisplay>}
+                </BetButton>
+                <RangeSlider
+                  value={bet}
+                  setValue={setBet}
+                  maxRange={player.means ?? 0}
+                />
+              </BtnsGroup>
+            )}
+          </>
+        )
       )}
       {!player.means && !player.playerBet && (
         <BtnsGroup>

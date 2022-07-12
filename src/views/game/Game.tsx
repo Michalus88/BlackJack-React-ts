@@ -34,8 +34,14 @@ export const Game = () => {
 
   return (
     <Wrapper>
-      <Table />
-      <Dashboard />
+      {isLoading || !player ? (
+        <LoadingIndicator size="big" />
+      ) : (
+        <>
+          <Table />
+          <Dashboard />
+        </>
+      )}
     </Wrapper>
   );
 };
