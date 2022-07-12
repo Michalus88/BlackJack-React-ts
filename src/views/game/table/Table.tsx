@@ -23,6 +23,7 @@ export const Table: FC = () => {
       <Cards cards={player?.dealerCards}></Cards>
       <PlayerContainer>
         <span>{player?.name}</span>
+        <span>Your bet: {player?.playerBet}$</span>
         <span>points:{player?.playerPoints}</span>{" "}
       </PlayerContainer>
       <Cards cards={player?.playerCards}></Cards>

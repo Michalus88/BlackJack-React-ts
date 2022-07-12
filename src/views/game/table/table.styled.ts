@@ -27,6 +27,8 @@ export const PlayerContainer = styled.div`
   justify-content: space-between;
   font-size: ${({ theme }) => theme.fontSize.l};
   color: ${({ theme }) => theme.colors.white};
+  font-weight: bold;
+  text-shadow: 1px 1px 0px ${({ theme }) => theme.colors.black};
 `;
 
 export const CardsConteiner = styled(PlayerContainer)`

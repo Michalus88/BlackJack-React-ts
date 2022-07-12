@@ -30,3 +30,16 @@ export const BetDisplay = styled.span`
   font-size: ${({ theme }) => theme.fontSize.s};
   color: ${({ theme }) => theme.colors.lightgreen};
 `;
+
+export const MeansDisplay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.green};
+  color: ${({ theme }) => theme.colors.green};
+  span {
+    font-weight: bold;
+    margin-left: 5px;
+    color: ${({ theme }) => theme.colors.lightgreen};
+  }
+`;
