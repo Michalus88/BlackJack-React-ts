@@ -4,14 +4,16 @@ import { HttpMethods, useGameFetch, useNotification } from "../../../hooks";
 import { RangeSlider } from "../../../components/range-slider/RangeSlider";
 import { Button } from "../../../components/button/button";
 import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";
+import { LoadingIndicator } from "../../../components/loadin-indicator/loading-ndicator";
 
 export const Dashboard: FC = () => {
   const { setBet, bet } = useContext(GameContext);
-  const { callApi, player } = useGameFetch();
+  const { callApi, player, isLoading } = useGameFetch();
+  const { message } = useNotification();
   if (player === null) {
-    return <div></div>;
+    return <LoadingIndicator size="big"></LoadingIndicator>;
   }
-  const isDisabled = player?.gameResult ? true : false;
+  const isDisabled = player?.gameResult || message ? true : false;
 
   const betHandler = async () => {
     await callApi("/bet", { method: HttpMethods.PUT, payload: { bet } });

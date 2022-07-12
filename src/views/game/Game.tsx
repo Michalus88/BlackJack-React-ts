@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNotification, useGameFetch } from "../../hooks/";
 import { Dashboard } from "./dashboard/Dashboard";
 import { Table } from "./table/Table";
-import { Wrapper } from "./game.styled";
 import { NotificationMode } from "../../components/notification/Notification";
 import { LoadingIndicator } from "../../components/loadin-indicator/loading-ndicator";
 import { Wrapper } from "./game.styled";
@@ -19,7 +18,6 @@ export const Game = () => {
   }, []);
 
   useEffect(() => {
-    let timeOutId: NodeJS.Timeout;
     if (player?.means === 0 && player?.playerBet === 0) {
       dispatchNotification(NotificationMode.WARMING, NO_MEANS);
       return;

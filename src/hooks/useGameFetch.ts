@@ -34,7 +34,6 @@ export const useGameFetch = (): UseGameFetchRes => {
 
   const callApi: CallApi = async (restUrl, options) => {
     setIsLoading(true);
-
     const configWidouthPayload = {
       method: options?.method ?? HttpMethods.GET,
     };
@@ -54,6 +53,7 @@ export const useGameFetch = (): UseGameFetchRes => {
         ...config,
       });
       const errorMsg = await isResErrorMsg(res);
+
       if (!errorMsg) {
         const player = (await res.json()) as PlayerDataRes;
         setPlayer(player);
