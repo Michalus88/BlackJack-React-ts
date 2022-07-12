@@ -7,7 +7,6 @@ export const CardsConteiner = styled(PlayerContainer)`
   display: flex;
   border-bottom: none;
   min-height: 200px;
-  /* justify-content: flex-start; */
   align-items: center;
 `;
 

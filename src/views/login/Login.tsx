@@ -9,7 +9,7 @@ import {
   WrapperField,
   ValidationMsg,
 } from "../../components/form/form";
-import { useAuth, useError } from "../../hooks";
+import { useAuth, useNotification } from "../../hooks";
 import { MainContentWrapper } from "../../components/main-content/mainContentWrapper";
 export const Login = () => {
   const {
@@ -20,8 +20,8 @@ export const Login = () => {
     mode: "onChange",
   });
   const { signIn } = useAuth();
-  const { error } = useError();
-  const disabled = error ? true : false;
+  const { message } = useNotification();
+  const disabled = message ? true : false;
   const registerHendler: SubmitHandler<RegisterReq> = async (data) => {
     await signIn(data);
   };

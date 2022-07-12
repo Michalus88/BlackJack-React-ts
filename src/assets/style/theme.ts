@@ -8,6 +8,7 @@ export const theme = {
     lightgreen: "lightgreen;",
     black: "#000",
     error: "#FF8383",
+    warming: "orange",
   },
   fontSize: {
     xxl: "34px",

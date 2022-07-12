@@ -2,7 +2,7 @@ import React from "react";
 import { GlobalStyle } from "../assets/style/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../assets/style/theme";
-import { ErrorProvider } from "../hooks/useError";
+import { ErrorProvider } from "../hooks/useNotification";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "../hooks/useAuth";
 

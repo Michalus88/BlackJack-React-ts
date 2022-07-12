@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { RegisterReq } from "types";
-import { useError } from "../../hooks/useError";
+import { useNotification } from "../../hooks/useNotification";
 import { isResErrorMsg } from "../../helpers/isErrorMsg";
 import { MainContentWrapper } from "../../components/main-content/mainContentWrapper";
 import {
@@ -13,6 +13,7 @@ import {
   Input,
   Submit,
 } from "../../components/form/form";
+import { NotificationMode } from "../../components/notification/Notification";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -24,8 +25,8 @@ export const Register = () => {
   } = useForm<RegisterReq>({
     mode: "onChange",
   });
-  const { error, dispatchError } = useError();
-  const disabled = error ? true : false;
+  const { message, dispatchNotification } = useNotification();
+  const disabled = message ? true : false;
 
   const registerHendler: SubmitHandler<RegisterReq> = async (data) => {
     try {
@@ -43,12 +44,12 @@ export const Register = () => {
       }
       const errMsg = await isResErrorMsg(res);
       if (errMsg) {
-        dispatchError(errMsg);
+        dispatchNotification(NotificationMode.ERROR, errMsg);
       } else {
         navigate("/login");
       }
     } catch (error) {
-      dispatchError();
+      dispatchNotification(NotificationMode.ERROR, null);
     }
   };
 

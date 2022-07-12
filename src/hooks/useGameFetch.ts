@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { GameContext } from "../providers/GameProvider";
 import { PlayerDataRes } from "types";
-import { useError } from "./useError";
+import { useNotification } from "./useNotification";
 import { isResErrorMsg } from "../helpers/isErrorMsg";
+import { NotificationMode } from "../components/notification/Notification";
 
 const BASE_URL = "http://localhost:3001/api/game";
 
@@ -14,7 +15,7 @@ export enum HttpMethods {
 }
 export interface UseGameFetchRes {
   player: PlayerDataRes | null;
-  isLoading: Boolean;
+  isLoading: boolean;
   callApi: CallApi;
 }
 type CallApi = <T>(
@@ -29,11 +30,10 @@ interface CallApiOptions<T> {
 export const useGameFetch = (): UseGameFetchRes => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setPlayer, player } = useContext(GameContext);
-  const { dispatchError } = useError();
+  const { dispatchNotification } = useNotification();
 
   const callApi: CallApi = async (restUrl, options) => {
     setIsLoading(true);
-
     const configWidouthPayload = {
       method: options?.method ?? HttpMethods.GET,
     };
@@ -53,6 +53,7 @@ export const useGameFetch = (): UseGameFetchRes => {
         ...config,
       });
       const errorMsg = await isResErrorMsg(res);
+
       if (!errorMsg) {
         const player = (await res.json()) as PlayerDataRes;
         setPlayer(player);
@@ -60,11 +61,12 @@ export const useGameFetch = (): UseGameFetchRes => {
       } else {
         setPlayer(null);
         setIsLoading(false);
+        dispatchNotification(NotificationMode.ERROR, errorMsg);
       }
     } catch (e) {
       setIsLoading(false);
+      dispatchNotification(NotificationMode.ERROR, null);
       setPlayer(null);
-      dispatchError();
     }
   };
 

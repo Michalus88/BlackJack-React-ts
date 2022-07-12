@@ -14,6 +14,7 @@ export interface CardType {
 
 export const Cards: FC<Props> = ({ cards }) => {
   let translateX = -100;
+
   return (
     <CardsConteiner>
       {cards?.map((card) => {

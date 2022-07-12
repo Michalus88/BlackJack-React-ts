@@ -1,18 +1,20 @@
 import React, { FC, useContext } from "react";
 import { GameContext } from "../../../providers/GameProvider";
-import { HttpMethods, useGameFetch } from "../../../hooks";
+import { HttpMethods, useGameFetch, useNotification } from "../../../hooks";
 import { RangeSlider } from "../../../components/range-slider/RangeSlider";
 import { Button } from "../../../components/button/button";
 import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";
+import { LoadingIndicator } from "../../../components/loadin-indicator/loading-ndicator";
 
 export const Dashboard: FC = () => {
   const { setBet, bet } = useContext(GameContext);
-  const { callApi, player } = useGameFetch();
+  const { callApi, player, isLoading } = useGameFetch();
+  const { message } = useNotification();
   if (player === null) {
-    return <div></div>;
+    return <LoadingIndicator size="big"></LoadingIndicator>;
   }
+  const isDisabled = player?.gameResult || message ? true : false;
 
-  const isDisabled = player?.gameResult ? true : false;
   const betHandler = async () => {
     await callApi("/bet", { method: HttpMethods.PUT, payload: { bet } });
     setBet(0);
@@ -32,31 +34,35 @@ export const Dashboard: FC = () => {
 
   return (
     <Wrapper>
-      {(player?.means > 0 || player?.playerBet > 0) && (
-        <>
-          {player?.isBet && (
-            <BtnsGroup>
-              <Button disabled={isDisabled} onClick={standHandler}>
-                Stand
-              </Button>
-              <Button disabled={isDisabled} onClick={pickHandler}>
-                Pick
-              </Button>
-            </BtnsGroup>
-          )}
-          {!player?.isBet && (
-            <BtnsGroup>
-              <BetButton disabled={bet ? false : true} onClick={betHandler}>
-                Bet{bet === 0 ? null : <BetDisplay>{bet} $</BetDisplay>}
-              </BetButton>
-              <RangeSlider
-                value={bet}
-                setValue={setBet}
-                maxRange={player?.means ?? 0}
-              />
-            </BtnsGroup>
-          )}
-        </>
+      {isLoading ? (
+        <LoadingIndicator size="small" />
+      ) : (
+        (player.means > 0 || player.playerBet > 0) && (
+          <>
+            {player?.isBet && (
+              <BtnsGroup>
+                <Button disabled={isDisabled} onClick={standHandler}>
+                  Stand
+                </Button>
+                <Button disabled={isDisabled} onClick={pickHandler}>
+                  Pick
+                </Button>
+              </BtnsGroup>
+            )}
+            {!player.isBet && (
+              <BtnsGroup>
+                <BetButton disabled={bet ? false : true} onClick={betHandler}>
+                  Bet{bet === 0 ? null : <BetDisplay>{bet} $</BetDisplay>}
+                </BetButton>
+                <RangeSlider
+                  value={bet}
+                  setValue={setBet}
+                  maxRange={player.means ?? 0}
+                />
+              </BtnsGroup>
+            )}
+          </>
+        )
       )}
       {!player.means && !player.playerBet && (
         <BtnsGroup>

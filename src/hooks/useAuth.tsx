@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState, createContext } from "react";
 import { RegisterReq, LoggedUserRes } from "types";
-import { useError } from "./";
+import { useNotification } from "./";
 import { useNavigate } from "react-router";
 import { isResErrorMsg } from "../helpers/isErrorMsg";
+import { NotificationMode } from "../components/notification/Notification";
+import { GLOBAL_ERR_MSG } from "./useNotification";
 
 interface AuthContextType {
   user: LoggedUserRes | null;
@@ -14,7 +16,7 @@ const AuthContext = createContext<AuthContextType>(null!);
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const navigate = useNavigate();
-  const { dispatchError, error } = useError();
+  const { dispatchNotification, message, mode } = useNotification();
   const [user, setUser] = useState<LoggedUserRes | null>(null);
   const [wasPrevMsgUnauthorized, setWasPrevMsgUnauthorized] =
     useState<boolean>(false);
@@ -32,20 +34,27 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
           setUser(null);
         }
       } catch (err) {
-        dispatchError("Server is anavailable.");
+        dispatchNotification(NotificationMode.ERROR, "Server is anavailable.");
       }
     })();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    if (mode !== NotificationMode.ERROR) return;
+    if (message === GLOBAL_ERR_MSG) {
+      setUser(null);
+      navigate("/");
+    }
     if (wasPrevMsgUnauthorized) {
       setWasPrevMsgUnauthorized(false);
       signOut();
     }
-    if (error === "Unauthorized") {
+    if (message === "Unauthorized") {
       setWasPrevMsgUnauthorized(true);
     }
-  }, [error]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message]);
 
   const signIn = async (data: RegisterReq) => {
     try {
@@ -59,14 +68,14 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         body: JSON.stringify(data),
       });
       if (await isResErrorMsg(res)) {
-        dispatchError("wrong login or password");
+        dispatchNotification(NotificationMode.ERROR, "wrong login or password");
       } else {
         const user = (await res.json()) as LoggedUserRes;
         setUser(user);
         navigate("/");
       }
     } catch (error) {
-      dispatchError();
+      dispatchNotification(NotificationMode.ERROR, null);
     }
   };
 
@@ -81,14 +90,17 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         setUser(null);
       } else {
         if (errMsg) {
-          dispatchError(errMsg);
+          dispatchNotification(NotificationMode.ERROR, errMsg);
+          setUser(null);
         } else {
           setUser(null);
         }
       }
     } catch (error) {
-      dispatchError();
+      dispatchNotification(NotificationMode.ERROR, null);
+      setUser(null);
     } finally {
+      setUser(null);
       navigate("/login");
     }
   };
