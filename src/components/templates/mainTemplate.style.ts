@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MainTemplate = styled.div`
+export const Wrapper = styled.div`
   position: relative;
   margin-left: auto;
   margin-right: auto;
