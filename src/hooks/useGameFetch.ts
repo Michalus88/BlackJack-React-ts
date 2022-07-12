@@ -3,6 +3,7 @@ import { GameContext } from "../providers/GameProvider";
 import { PlayerDataRes } from "types";
 import { useNotification } from "./useNotification";
 import { isResErrorMsg } from "../helpers/isErrorMsg";
+import { NotificationMode } from "../components/notification/Notification";
 
 const BASE_URL = "http://localhost:3001/api/game";
 
@@ -14,7 +15,7 @@ export enum HttpMethods {
 }
 export interface UseGameFetchRes {
   player: PlayerDataRes | null;
-  isLoading: Boolean;
+  isLoading: boolean;
   callApi: CallApi;
 }
 type CallApi = <T>(
