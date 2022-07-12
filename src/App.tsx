@@ -18,7 +18,7 @@ function App() {
   return (
     <MainTemplate>
       {message && mode === NotificationMode.ERROR && (
-        <Notification message={message} />
+        <Notification mode={NotificationMode.ERROR} message={message} />
       )}
       <Navigation logOut={signOut} user={user}></Navigation>
       <Routes>

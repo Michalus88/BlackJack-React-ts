@@ -60,11 +60,12 @@ export const useGameFetch = (): UseGameFetchRes => {
       } else {
         setPlayer(null);
         setIsLoading(false);
+        dispatchNotification(NotificationMode.ERROR, errorMsg);
       }
     } catch (e) {
       setIsLoading(false);
+      dispatchNotification(NotificationMode.ERROR, null);
       setPlayer(null);
-      dispatchNotification();
     }
   };
 

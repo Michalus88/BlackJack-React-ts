@@ -6,12 +6,15 @@ import React, {
   useRef,
 } from "react";
 import { NotificationMode } from "../components/notification/Notification";
-interface ErrorContextType {
+interface NotificationContextType {
   message: string | null;
-  dispatchNotification: (msg?: string | null, mode?: NotificationMode) => void;
+  dispatchNotification: (mode: NotificationMode, msg: string | null) => void;
   mode: NotificationMode;
 }
-const NotificationContext = createContext<ErrorContextType>(null!);
+
+export const GLOBAL_ERR_MSG = "Sorry. Please try later";
+
+const NotificationContext = createContext<NotificationContextType>(null!);
 
 export const ErrorProvider = ({ children }: { children: JSX.Element }) => {
   const [message, setMessage] = useState<string | null>(null);
@@ -19,35 +22,18 @@ export const ErrorProvider = ({ children }: { children: JSX.Element }) => {
   const timerId = useRef<NodeJS.Timeout>(null!);
 
   const dispatchNotification = useCallback(
-    (
-      msg?: string | null,
-      notificationMode: NotificationMode = NotificationMode.ERROR
-    ) => {
+    (notificationMode: NotificationMode, msg: string | null) => {
       clearTimeout(timerId.current);
       setMode(notificationMode);
 
-      switch (notificationMode) {
-        case NotificationMode.SUCCESS:
-          setMessage((prev) => (prev = msg ?? "Sorry. Please try later"));
-          setMode(NotificationMode.SUCCESS);
-          break;
-        case NotificationMode.WARMING:
-          setMessage(
-            (prev) => (prev = msg ?? "You have not means. Please take credits")
-          );
-          setMode(NotificationMode.WARMING);
-          break;
-        case NotificationMode.ERROR:
-          setMessage((prev) => (prev = msg ?? "Sorry. Please try later"));
-          break;
-        default:
-          setMessage((prev) => (prev = msg ?? "Sorry. Please try later"));
-          break;
+      if (mode === NotificationMode.ERROR && msg === null) {
+        setMessage(GLOBAL_ERR_MSG);
+      } else {
+        setMessage(msg);
       }
-
       timerId.current = setTimeout(() => {
         setMessage("");
-      }, 7000);
+      }, 5000);
     },
     []
   );
@@ -65,7 +51,7 @@ export const useNotification = () => {
   const errorContext = useContext(NotificationContext);
 
   if (!errorContext) {
-    throw Error("useError needs to be used inside ErrorContext");
+    throw Error("useNotification needs to be used inside ErrorContext");
   }
 
   return errorContext;

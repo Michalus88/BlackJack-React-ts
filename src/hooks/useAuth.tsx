@@ -4,6 +4,7 @@ import { useNotification } from "./";
 import { useNavigate } from "react-router";
 import { isResErrorMsg } from "../helpers/isErrorMsg";
 import { NotificationMode } from "../components/notification/Notification";
+import { GLOBAL_ERR_MSG } from "./useNotification";
 
 interface AuthContextType {
   user: LoggedUserRes | null;
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
           setUser(null);
         }
       } catch (err) {
-        dispatchNotification("Server is anavailable.");
+        dispatchNotification(NotificationMode.ERROR, "Server is anavailable.");
       }
     })();
   }, []);
@@ -61,14 +62,14 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         body: JSON.stringify(data),
       });
       if (await isResErrorMsg(res)) {
-        dispatchNotification("wrong login or password");
+        dispatchNotification(NotificationMode.ERROR, "wrong login or password");
       } else {
         const user = (await res.json()) as LoggedUserRes;
         setUser(user);
         navigate("/");
       }
     } catch (error) {
-      dispatchNotification();
+      dispatchNotification(NotificationMode.ERROR, null);
     }
   };
 
@@ -83,14 +84,17 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         setUser(null);
       } else {
         if (errMsg) {
-          dispatchNotification(errMsg);
+          dispatchNotification(NotificationMode.ERROR, errMsg);
+          setUser(null);
         } else {
           setUser(null);
         }
       }
     } catch (error) {
-      dispatchNotification();
+      dispatchNotification(NotificationMode.ERROR, null);
+      setUser(null);
     } finally {
+      setUser(null);
       navigate("/login");
     }
   };

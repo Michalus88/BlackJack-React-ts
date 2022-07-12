@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import { GameContext } from "../../../providers/GameProvider";
-import { HttpMethods, useGameFetch } from "../../../hooks";
+import { HttpMethods, useGameFetch, useNotification } from "../../../hooks";
 import { RangeSlider } from "../../../components/range-slider/RangeSlider";
 import { Button } from "../../../components/button/button";
 import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";

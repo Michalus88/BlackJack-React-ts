@@ -4,25 +4,22 @@ import { Title } from "../title/title";
 import { Wrapper } from "./notification.styles";
 
 interface props {
+  mode: NotificationMode;
   message: string;
-  mode?: NotificationMode;
   title?: string;
 }
 
 export enum NotificationMode {
+  INFO = "info",
   SUCCESS = "success",
   WARMING = "warming",
   ERROR = "error",
 }
 
-export const Notification: FC<props> = ({
-  message,
-  mode = NotificationMode.ERROR,
-  title,
-}) => {
+export const Notification: FC<props> = ({ mode, message, title }) => {
   const { dispatchNotification } = useNotification();
   const clouse = () => {
-    dispatchNotification("");
+    dispatchNotification(mode, "");
   };
 
   const msgTitle = mode === NotificationMode.ERROR ? "Error !" : title ?? null;
@@ -30,7 +27,7 @@ export const Notification: FC<props> = ({
   return (
     <Wrapper mode={mode}>
       <button onClick={clouse}>X</button>
-      <Title>{msgTitle}</Title>
+      {msgTitle && <Title>{msgTitle}</Title>}
       <p>{message}</p>
     </Wrapper>
   );

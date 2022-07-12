@@ -13,6 +13,7 @@ import {
   Input,
   Submit,
 } from "../../components/form/form";
+import { NotificationMode } from "../../components/notification/Notification";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -43,12 +44,12 @@ export const Register = () => {
       }
       const errMsg = await isResErrorMsg(res);
       if (errMsg) {
-        dispatchNotification(errMsg);
+        dispatchNotification(NotificationMode.ERROR, errMsg);
       } else {
         navigate("/login");
       }
     } catch (error) {
-      dispatchNotification();
+      dispatchNotification(NotificationMode.ERROR, null);
     }
   };
 
