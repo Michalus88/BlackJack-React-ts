@@ -14,6 +14,7 @@ import {
   Submit,
 } from "../../components/form/form";
 import { NotificationMode } from "../../components/notification/Notification";
+import { apiUrl } from "../../config/api";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export const Register = () => {
 
   const registerHendler: SubmitHandler<RegisterReq> = async (data) => {
     try {
-      const res = await fetch("http://localhost:3001/api/user", {
+      const res = await fetch(`${apiUrl}/user`, {
         method: "POST",
         headers: {
           Accept: "application/json",

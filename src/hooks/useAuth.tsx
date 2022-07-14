@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { isResErrorMsg } from "../helpers/isErrorMsg";
 import { NotificationMode } from "../components/notification/Notification";
 import { GLOBAL_ERR_MSG } from "./useNotification";
+import { apiUrl } from "../config/api";
 
 interface AuthContextType {
   user: LoggedUserRes | null;
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/user", {
+        const res = await fetch(`${apiUrl}/user`, {
           credentials: "include",
         });
         if (res.ok) {
@@ -58,7 +59,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   const signIn = async (data: RegisterReq) => {
     try {
-      const res = await fetch("http://localhost:3001/api/auth/login", {
+      const res = await fetch(`${apiUrl}/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -81,7 +82,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   const signOut = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/auth/logout", {
+      const res = await fetch(`${apiUrl}/logout`, {
         method: "POST",
         credentials: "include",
       });

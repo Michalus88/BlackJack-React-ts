@@ -4,8 +4,9 @@ import { PlayerDataRes } from "types";
 import { useNotification } from "./useNotification";
 import { isResErrorMsg } from "../helpers/isErrorMsg";
 import { NotificationMode } from "../components/notification/Notification";
+import { apiUrl } from "../config/api";
 
-const BASE_URL = "http://localhost:3001/api/game";
+const BASE_URL = `${apiUrl}/game`;
 
 export enum HttpMethods {
   GET = "GET",
