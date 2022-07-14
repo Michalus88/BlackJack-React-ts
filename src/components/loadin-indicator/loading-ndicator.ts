@@ -20,12 +20,12 @@ const flip = keyframes`
 type LoadingIsize = "small" | "big";
 
 export const LoadingIndicator = styled.div<{ size: LoadingIsize }>`
+  min-width: 50%;
   display: inline-block;
   background-image: url(${img.logo});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  min-width: 50%;
   height: ${({ size }) => (size === "small" ? "39px" : "20%")};
   animation: ${flip} 5.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 `;

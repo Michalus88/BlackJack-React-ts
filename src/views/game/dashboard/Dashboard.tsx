@@ -3,7 +3,13 @@ import { GameContext } from "../../../providers/GameProvider";
 import { HttpMethods, useGameFetch, useNotification } from "../../../hooks";
 import { RangeSlider } from "../../../components/range-slider/RangeSlider";
 import { Button } from "../../../components/button/button";
-import { Wrapper, BtnsGroup, BetButton, BetDisplay } from "./dashboard.style";
+import {
+  Wrapper,
+  BtnsGroup,
+  BetButton,
+  BetDisplay,
+  MeansDisplay,
+} from "./dashboard.style";
 import { LoadingIndicator } from "../../../components/loadin-indicator/loading-ndicator";
 
 export const Dashboard: FC = () => {
@@ -40,14 +46,20 @@ export const Dashboard: FC = () => {
         (player.means > 0 || player.playerBet > 0) && (
           <>
             {player?.isBet && (
-              <BtnsGroup>
-                <Button disabled={isDisabled} onClick={standHandler}>
-                  Stand
-                </Button>
-                <Button disabled={isDisabled} onClick={pickHandler}>
-                  Pick
-                </Button>
-              </BtnsGroup>
+              <>
+                <BtnsGroup>
+                  <Button disabled={isDisabled} onClick={standHandler}>
+                    Stand
+                  </Button>
+                  <Button disabled={isDisabled} onClick={pickHandler}>
+                    Pick
+                  </Button>
+                </BtnsGroup>
+                <MeansDisplay>
+                  {" "}
+                  Your credits: <span>{player?.means} $</span>{" "}
+                </MeansDisplay>
+              </>
             )}
             {!player.isBet && (
               <BtnsGroup>

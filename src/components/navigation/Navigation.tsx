@@ -1,4 +1,5 @@
-import { StyledLink, Nav, NavWrapper, Logo } from "./navigation.style";
+import { Nav, NavWrapper, Logo } from "./navigation.style";
+import { StyledLink } from "../styled-link/styledLink";
 import { LoggedUserRes } from "types";
 import { FC } from "react";
 

@@ -19,4 +19,5 @@ export const Button = styled.button<{ disabled?: boolean }>`
     box-shadow: ${({ disabled, theme }) =>
       disabled ? "none" : `1px -1px 15px 1px ${theme.colors.lightgreen}`};
   }
+  transition: 0.3s linear;
 `;

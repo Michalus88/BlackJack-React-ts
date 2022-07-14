@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device, size } from "../../assets/style/breakPoints";
 
 export const MainContentWrapper = styled.div`
   margin-top: 15px;
@@ -8,4 +9,9 @@ export const MainContentWrapper = styled.div`
   display: flex;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.black};
+  @media ${device.md}, (max-height: ${size.sm}) {
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
 `;
