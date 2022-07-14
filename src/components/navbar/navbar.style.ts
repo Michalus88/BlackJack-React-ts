@@ -16,6 +16,7 @@ export const LinkWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;
   background-color: ${({ theme }) => theme.colors.transparentBlack};
   width: 100vw;
+  max-width: 1300px;
   display: flex;
   justify-content: space-around;
   transition: transform 0.5s ease-in-out;
