@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import { Wrapper, PlayerContainer } from "./table.styled";
+import { Wrapper, PlayerContainer, PlayerInfo } from "./table.styled";
 import { Cards } from "./cards/Cards";
 import { GameContext } from "../../../providers/GameProvider";
 import {
@@ -17,16 +17,20 @@ export const Table: FC = () => {
         <Notification mode={mode} message={message} />
       )}
       <PlayerContainer>
-        <span>Dealer</span>
-        <span>points: {player?.dealerPoints}</span>{" "}
+        <PlayerInfo>
+          <span>Dealer</span>
+          <span>points: {player?.dealerPoints}</span>{" "}
+        </PlayerInfo>
+        <Cards cards={player?.dealerCards}></Cards>
       </PlayerContainer>
-      <Cards cards={player?.dealerCards}></Cards>
       <PlayerContainer>
-        <span>{player?.name}</span>
-        <span>Your bet: {player?.playerBet}$</span>
-        <span>points:{player?.playerPoints}</span>{" "}
+        <PlayerInfo>
+          <span>{player?.name}</span>
+          <span>Your bet: {player?.playerBet}$</span>
+          <span>points:{player?.playerPoints}</span>{" "}
+        </PlayerInfo>
+        <Cards cards={player?.playerCards}></Cards>
       </PlayerContainer>
-      <Cards cards={player?.playerCards}></Cards>
     </Wrapper>
   );
 };

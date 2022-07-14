@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 export const StyledLink = styled(NavLink)`
   border: ${({ theme }) => theme.colors.green} solid 1px;
   padding: 10px 25px;
-  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.black};
+  text-align: center;
   font-weight: bold;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.green};
-  background-color: ${({ theme }) => theme.colors.black};
-  text-align: center;
+  cursor: pointer;
   &:hover {
     box-shadow: 1px -1px 15px 2px ${({ theme }) => theme.colors.lightgreen};
   }

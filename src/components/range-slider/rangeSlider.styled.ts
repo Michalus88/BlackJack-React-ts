@@ -1,19 +1,33 @@
 import styled from "styled-components";
+import { device, size } from "../../assets/style/breakPoints";
 
 export const Wrapper = styled.div`
   margin-left: 40px;
   width: 380px;
-  background: black;
-  border: 1px solid green;
   padding: 0 70px 0 45px;
+  border: 1px solid green;
+  background: black;
+  @media ${device.md} {
+    margin: 10px 0 0 0;
+    width: 90%;
+    height: 42px;
+  }
+  @media (max-height: ${size.sm}) and (orientation: landscape) {
+    margin: 0;
+    width: 40vw;
+    height: 42px;
+  }
 `;
 
 export const Field = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media ${device.md} {
+    /* left: 0; */
+  }
 `;
 
 const RangeVal = styled.div`
@@ -36,10 +50,10 @@ export const Slider = styled.input.attrs(() => ({
   -webkit-appearance: none;
   width: 100%;
   height: 3px;
-  background: green;
+  border: none;
   border-radius: 5px;
   outline: none;
-  border: none;
+  background: green;
   z-index: 100;
   cursor: pointer;
   :hover {
@@ -50,7 +64,6 @@ export const Slider = styled.input.attrs(() => ({
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    background: red;
     border-radius: 50%;
     background: green;
     cursor: pointer;
@@ -63,10 +76,9 @@ export const Slider = styled.input.attrs(() => ({
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    background: red;
+    border: 1px solid #664aff;
     border-radius: 50%;
     background: #664aff;
-    border: 1px solid #664aff;
     cursor: pointer;
   }
 `;
