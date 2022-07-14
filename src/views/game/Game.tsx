@@ -25,7 +25,6 @@ export const Game = () => {
     }
 
     if (player?.gameResult) {
-      console.log(player.gameResult);
       switch (player.gameResult) {
         case 1:
           dispatchNotification(NotificationMode.WARMING, GameResult.LOOSE);
