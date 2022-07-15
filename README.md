@@ -1,46 +1,111 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <img src="src/assets/blackJackLogo.png" alt="logo" width="200" height="auto" />
+  
+<h4>
+    <a href="https://github.com/Louis3797/awesome-readme-template/">View Demo</a>
+  <span> · </span>
+    <a href="https://github.com/Louis3797/awesome-readme-template">Documentation</a>
+  <span> · </span>
+  </h4>
+</div>
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+# :notebook_with_decorative_cover: Table of Contents
 
-### `npm start`
+- [About the Project](#star2-about-the-project)
+  - [Screenshots](#camera-screenshots)
+  - [Tech Stack](#space_invader-tech-stack)
+  - [Color Reference](#art-color-reference)
+- [Getting Started](#toolbox-getting-started)
+  - [Run Locally](#running-run-locally)
+- [Contact](#handshake-contact)
+- [Acknowledgements](#gem-acknowledgements)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## :star2: About the Project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Project is a replication of the popular black jack card game. It was created to show my skills.
+It was written using React version 18 in conjunction with typescripterm.I use the styled-components library and create a view for the desktop and mobile. I use the react-hook library for form handling and validation. I use my own hooks to data fetch and the user authenticate. I use useContext for the global state.
+I also use react Router for navigating.
+This project is closely connected with the backend which has been placed in a separate repository. Backend here:<a href="https://github.com/Michalus88/BlackJack-Nest-mongo.git">BlackJack-Nest-mongo</a>
 
-### `npm test`
+### :camera: Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<div align="center"> 
+  <img src="screens/register_deskopt.png" alt="register mobile" />
+</div>
+<div align="center"> 
+  <img src="screens/register_mobile.png" alt="register mobile" />
+</div>
+<div align="center"> 
+  <img src="screens/error_deskopt.png" alt="error deskopt" />
+</div>
+<div align="center"> 
+  <img src="screens/game_deskopt.png" alt="game deskopt" />
+</div>
+<div align="center"> 
+  <img src="screens/game_mobile.png" alt="game mobile" />
+</div>
+<div align="center"> 
+  <img src="screens/game_landscape.png" alt="game landscape" />
+</div>
 
-### `npm run build`
+### :space_invader: Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  <ul>
+    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
+    <li><a href="https://reactjs.org/">React.js</a></li>
+  </ul>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### :art: Color Reference
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Color           | Hex      |
+| --------------- | -------- |
+| Primary Color   | 006400FF |
+| Secondary Color | 000000FF |
+| Accent Color    | 90EE90FF |
 
-### `npm run eject`
+## :toolbox: Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### :running: Run Locally
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### BEFORE STARTED YOU SHOULD KNOW
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If you want to enjoy a fully functioning project, you should put both BlackJack-React-ts
+and BlackJack-Nest-mongo projects both in one folder, each in your own folder.
+Folder names should remain unchanged. Before you start running BlackJack-React-ts,
+first download and run the backend -<a href="https://github.com/Michalus88/BlackJack-Nest-mongo.git">BlackJack-Nest-mongo</a>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Clone the project
 
-## Learn More
+```bash
+  git clone https://github.com/Michalus88/BlackJack-React-ts.git
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Go to the project directory
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+## :handshake: Contact
+
+Michał Molenda: [Gmail](mailto:michalus88@gmail.com)
+
+## :gem: Acknowledgements
+
+- [styled-components](https://styled-components.com/)
+- [react-hook-form](https://react-hook-form.com/)
