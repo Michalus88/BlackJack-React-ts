@@ -17,41 +17,46 @@
 - [About the Project](#star2-about-the-project)
   - [Screenshots](#camera-screenshots)
   - [Tech Stack](#space_invader-tech-stack)
-  - [Features](#dart-features)
   - [Color Reference](#art-color-reference)
 - [Getting Started](#toolbox-getting-started)
   - [Run Locally](#running-run-locally)
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
 
-<!-- About the Project -->
-
 ## :star2: About the Project
 
-<!-- Screenshots -->
+Project is a replication of the popular black jack card game. It was created to show my skills.
+It was written using React version 18 in conjunction with typescripterm.I use the styled-components library and create a view for the desktop and mobile. I use the react-hook library for form handling and validation. I use my own hooks to data fetch and the user authenticate. I use useContext for the global state.
+I also use react Router for navigating.
+This project is closely connected with the backend which has been placed in a separate repository. Backend here:<a href="https://github.com/Michalus88/BlackJack-Nest-mongo.git">BlackJack-Nest-mongo</a>
 
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <img src="screens/register_deskopt.png" alt="register mobile" />
 </div>
-
-<!-- TechStack -->
+<div align="center"> 
+  <img src="screens/register_mobile.png" alt="register mobile" />
+</div>
+<div align="center"> 
+  <img src="screens/error_deskopt.png" alt="error deskopt" />
+</div>
+<div align="center"> 
+  <img src="screens/game_deskopt.png" alt="game deskopt" />
+</div>
+<div align="center"> 
+  <img src="screens/game_mobile.png" alt="game mobile" />
+</div>
+<div align="center"> 
+  <img src="screens/game_landscape.png" alt="game landscape" />
+</div>
 
 ### :space_invader: Tech Stack
 
-<details>
   <ul>
     <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
     <li><a href="https://reactjs.org/">React.js</a></li>
   </ul>
-</details>
-
-### :dart: Features
-
-- Feature 1
-- Feature 2
-- Feature 3
 
 ### :art: Color Reference
 
@@ -96,17 +101,11 @@ Start the server
   npm start
 ```
 
-<!-- Contact -->
-
 ## :handshake: Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-<!-- Acknowledgments -->
+Michał Molenda: [Gmail](mailto:michalus88@gmail.com)
 
 ## :gem: Acknowledgements
 
-- [Shields.io](https://shields.io/)
-- [Awesome README](https://github.com/matiassingers/awesome-readme)
-- [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
-- [Readme Template](https://github.com/othneildrew/Best-README-Template)
+- [styled-components](https://styled-components.com/)
+- [react-hook-form](https://react-hook-form.com/)
