@@ -2,12 +2,9 @@
 
   <img src="src/assets/blackJackLogo.png" alt="logo" width="200" height="auto" />
   
-<h4>
-    <a href="https://github.com/Louis3797/awesome-readme-template/">View Demo</a>
-  <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template">Documentation</a>
-  <span> · </span>
-  </h4>
+<h1>
+    <a href="https://black-jack.networkmanager.pl/">View Demo</a>
+  </h1>
 </div>
 
 <br />
