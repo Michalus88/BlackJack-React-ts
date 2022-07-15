@@ -44,7 +44,7 @@ This project is closely connected with the backend which has been placed in a se
 
 <details>
 <div align="center"> 
-  <img src="screens/mobile.png" alt="register mobile" />
+  <img src="screens/register_mobile.png" alt="register mobile" />
 </div>
 </details>
 
