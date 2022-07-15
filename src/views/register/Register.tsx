@@ -69,7 +69,7 @@ export const Register = () => {
                 message: "Max length is 50",
               },
               minLength: {
-                value: 1,
+                value: 5,
                 message: "Min length is 5",
               },
             })}
