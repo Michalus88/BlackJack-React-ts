@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   const signOut = async () => {
     try {
-      const res = await fetch(`${apiUrl}/logout`, {
+      const res = await fetch(`${apiUrl}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
