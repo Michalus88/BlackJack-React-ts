@@ -1,46 +1,112 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <img src="src/assets/blackJackLogo.png" alt="logo" width="200" height="auto" />
+  
+<h4>
+    <a href="https://github.com/Louis3797/awesome-readme-template/">View Demo</a>
+  <span> · </span>
+    <a href="https://github.com/Louis3797/awesome-readme-template">Documentation</a>
+  <span> · </span>
+  </h4>
+</div>
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+# :notebook_with_decorative_cover: Table of Contents
 
-### `npm start`
+- [About the Project](#star2-about-the-project)
+  - [Screenshots](#camera-screenshots)
+  - [Tech Stack](#space_invader-tech-stack)
+  - [Features](#dart-features)
+  - [Color Reference](#art-color-reference)
+- [Getting Started](#toolbox-getting-started)
+  - [Run Locally](#running-run-locally)
+- [Contact](#handshake-contact)
+- [Acknowledgements](#gem-acknowledgements)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- About the Project -->
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## :star2: About the Project
 
-### `npm test`
+<!-- Screenshots -->
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### :camera: Screenshots
 
-### `npm run build`
+<div align="center"> 
+  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+</div>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- TechStack -->
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### :space_invader: Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<details>
+  <ul>
+    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
+    <li><a href="https://reactjs.org/">React.js</a></li>
+  </ul>
+</details>
 
-### `npm run eject`
+### :dart: Features
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Feature 1
+- Feature 2
+- Feature 3
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### :art: Color Reference
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+| Color           | Hex      |
+| --------------- | -------- |
+| Primary Color   | 006400FF |
+| Secondary Color | 000000FF |
+| Accent Color    | 90EE90FF |
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## :toolbox: Getting Started
 
-## Learn More
+### :running: Run Locally
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### BEFORE STARTED YOU SHOULD KNOW
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If you want to enjoy a fully functioning project, you should put both BlackJack-React-ts
+and BlackJack-Nest-mongo projects both in one folder, each in your own folder.
+Folder names should remain unchanged. Before you start running BlackJack-React-ts,
+first download and run the backend -<a href="https://github.com/Michalus88/BlackJack-Nest-mongo.git">BlackJack-Nest-mongo</a>
+
+Clone the project
+
+```bash
+  git clone https://github.com/Michalus88/BlackJack-React-ts.git
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+<!-- Contact -->
+
+## :handshake: Contact
+
+Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+
+<!-- Acknowledgments -->
+
+## :gem: Acknowledgements
+
+- [Shields.io](https://shields.io/)
+- [Awesome README](https://github.com/matiassingers/awesome-readme)
+- [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
+- [Readme Template](https://github.com/othneildrew/Best-README-Template)
