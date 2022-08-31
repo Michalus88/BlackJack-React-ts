@@ -31,51 +31,43 @@ This project is closely connected with the backend which has been placed in a se
 
 #### Register deskopt
 
-<details>
 <div align="center"> 
   <img src="screens/register_deskopt.png" alt="register deskopt" />
 </div>
-</details>
 
 #### Register mobile
 
-<details>
+
 <div align="center"> 
   <img src="screens/register_mobile.png" alt="register mobile" />
 </div>
-</details>
+
 
 #### Error deskopt
 
-<details>
 <div>
   <img src="screens/error_deskopt.png" alt="error deskopt" />
 </div>
-</details>
+
 
 #### Game deskopt
 
-<details>
 <div align="center"> 
   <img src="screens/game_deskopt.png" alt="game deskopt" />
 </div>
-</details>
+
 
 #### Game mobile
 
-<details>
 <div align="center"> 
   <img src="screens/game_mobile.png" alt="game mobile" />
 </div>
-</details>
 
 #### Game mobile landscape
 
-<details>
 <div align="center"> 
   <img src="screens/game_landscape.png" alt="game landscape" />
 </div>
-</details>
 
 ### :space_invader: Tech Stack
 
